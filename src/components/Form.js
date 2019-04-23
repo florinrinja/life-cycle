@@ -6,11 +6,10 @@ const Form = ({ onChange, handleSubmit, title }) => {
 		<label htmlFor="title">{title}</label>
 		<input
 				type="text"
-				id="title"
 				onChange={onChange}
 				value={title}
 		/>
-		<input type="submit" />
+		<button type='submit'>Submit</button>
 		</form>
 	);
 }

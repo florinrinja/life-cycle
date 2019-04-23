@@ -12,47 +12,37 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    console.log("Formulaire rendu");
+  }
+
+  componentDidUpdate() {
+    console.log("Titre changé")
+  }
+
   onChange = (e) => {
-    const value = e.target.value;
     this.setState({
-      title: value
+      title: e.target.value
     })
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const title = this.state.title;
-
-    if (/\S/.test(title)) {
-      this.setState({
-        globalTitle: `Mon formulaire - <valeur du state ${title}>`,
-      })
-    }else{
-      alert("empty input!")
-    }
-  }
-
-  componentDidMount() {
-    console.log("Formulaire rendu");
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.globalTitle !== this.state.globalTitle) {
-      console.log("Titre changé")
-    }
+    this.setState({
+      globalTitle: `Mon formulaire - ${this.state.title}`
+    });
+    document.title = this.state.globalTitle;
   }
 
   render() {
     return (
       <div className="App">
-        <header className="">
           <h2>{this.state.globalTitle}</h2>
           <Form
-          title={this.state.title}
-          onChange={this.onChange}
-          handleSubmit={this.handleSubmit}
+            title={this.state.title}
+            onChange={this.onChange}
+            handleSubmit={this.handleSubmit}
           />
-        </header>
       </div>
     );
   }
